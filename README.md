@@ -1,6 +1,13 @@
-# KeyboardKoala
+<p align="center">
+  <img src="public/koala.png" alt="KeyboardKoala" width="168" />
+</p>
 
-Background keyboard launcher for macOS, Windows, and Linux. Built with Tauri 2.
+<h1 align="center">KeyboardKoala</h1>
+
+<p align="center">
+  <strong>Background keyboard launcher</strong> for macOS, Windows, and Linux.<br />
+  Built with Tauri&nbsp;2.
+</p>
 
 Press a global hotkey, pick a command or app, launch it, and the window hides again. The agent keeps running.
 
