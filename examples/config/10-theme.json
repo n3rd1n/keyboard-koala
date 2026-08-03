@@ -1,0 +1,9 @@
+{
+  "themeOverrides": {
+    "accent": "#4f9dd9",
+    "accentSoft": "#243a4d",
+    "accentText": "#d7ecff",
+    "key": "#9876aa"
+  },
+  "commands": []
+}

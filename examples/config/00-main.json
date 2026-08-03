@@ -1,0 +1,47 @@
+{
+  "hotkey": "CommandOrControl+Shift+Space",
+  "autostart": false,
+  "theme": "dark",
+  "commands": [
+    {
+      "name": "Installed Apps",
+      "key": "a",
+      "category": "System",
+      "type": "app-launcher"
+    },
+    {
+      "name": "Terminal",
+      "key": "t",
+      "category": "System",
+      "path": "Terminal"
+    },
+    {
+      "name": "Bookmarks",
+      "key": "b",
+      "category": "Web",
+      "type": "text",
+      "group": [
+        {
+          "name": "Example",
+          "url": "https://example.com"
+        },
+        {
+          "name": "Tauri Docs",
+          "url": "https://v2.tauri.app"
+        }
+      ]
+    },
+    {
+      "name": "Extras",
+      "key": "x",
+      "category": "System",
+      "group": [
+        {
+          "name": "Example Site",
+          "key": "e",
+          "url": "https://example.com"
+        }
+      ]
+    }
+  ]
+}

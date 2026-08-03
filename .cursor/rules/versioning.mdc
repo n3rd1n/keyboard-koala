@@ -1,0 +1,48 @@
+---
+description: SemVer release flow with git tags
+alwaysApply: true
+---
+
+# Versioning & git tags
+
+This project versions releases with **SemVer** and **annotated git tags**.
+
+## Version sources (keep in sync)
+
+Bump these together for every release:
+
+- `package.json` → `version`
+- `src-tauri/tauri.conf.json` → `version`
+- `src-tauri/Cargo.toml` → `version`
+
+Tag name must match: `v0.1.0` ↔ `0.1.0` (always prefix tags with `v`).
+
+## Release flow
+
+1. Bump the three version fields
+2. Commit the bump, e.g. `chore: bump version to 0.2.0`
+3. Create an annotated tag on that commit:
+   ```bash
+   git tag -a v0.2.0 -m "v0.2.0: short summary"
+   ```
+4. Push branch and tag when the user asks:
+   ```bash
+   git push origin HEAD
+   git push origin v0.2.0
+   ```
+
+## SemVer
+
+| Change | Bump |
+|--------|------|
+| Bugfix / patch | `0.1.0` → `0.1.1` |
+| Compatible feature | `0.1.0` → `0.2.0` |
+| Breaking change | `0.x` → `1.0.0` (or major bump) |
+
+## Agent rules
+
+- Prefer annotated tags (`git tag -a`), not lightweight tags
+- Tag only after the version-bump commit exists
+- Do not move, delete, or retag published tags unless the user explicitly asks
+- Do not create tags or push them unless the user requests a release/tag
+- When the user asks to release, bump versions, commit, tag, then push only if they also asked to push

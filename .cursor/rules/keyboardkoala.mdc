@@ -1,0 +1,16 @@
+---
+description: KeyboardKoala coding standards
+globs:
+  - "**/*"
+---
+
+# KeyboardKoala
+
+- Prefer small, pure functions. Keep side effects at the edges (Tauri commands, React event handlers).
+- Do not commit secrets, personal paths, private URLs, tokens, or real user configs.
+- User config lives only under `~/.config/keyboardkoala`. Examples stay under `examples/config/`.
+- Keep Tauri capabilities minimal. Scope filesystem access to the config directory.
+- Code and commit messages in English. User-facing UI may be German.
+- Prefer stable dependency versions already pinned in lockfiles over bleeding-edge releases.
+- For commit message format, follow `.cursor/rules/git-commits.mdc`.
+- For SemVer and git tags, follow `.cursor/rules/versioning.mdc`.

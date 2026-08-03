@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Editor Pack",
+    "key": "c",
+    "category": "Tools",
+    "group": [
+      {
+        "name": "Open Example",
+        "key": "e",
+        "url": "https://example.com"
+      }
+    ]
+  }
+]

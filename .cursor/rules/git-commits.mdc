@@ -1,0 +1,69 @@
+---
+description: Best-practice Git commit messages (English, Conventional Commits)
+alwaysApply: true
+---
+
+# Git commit messages
+
+When creating commits in this repo, follow these rules.
+
+## Format
+
+Use [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+<type>(optional-scope): <short summary>
+
+[optional body]
+
+[optional footer]
+```
+
+- Language: **English only**
+- Summary: imperative mood, ~50 characters, no trailing period
+- Focus on **why**, not a file dump of **what**
+- Body only when needed (context, trade-offs, breaking changes)
+- One logical change per commit
+
+## Types
+
+| Type | Use for |
+|------|---------|
+| `feat` | New user-facing capability |
+| `fix` | Bug fix |
+| `refactor` | Internal change, no behavior change |
+| `docs` | README, comments, examples only |
+| `style` | Formatting, no logic change |
+| `perf` | Performance improvement |
+| `test` | Tests only |
+| `build` | Cargo/npm/Tauri build or bundling |
+| `ci` | CI config |
+| `chore` | Maintenance that does not fit above |
+
+Scopes (optional, lowercase): `ui`, `config`, `hotkey`, `launch`, `apps`, `tauri`, `deps`
+
+## Examples
+
+```
+feat(hotkey): register configurable global shortcut
+
+fix(launch): open Linux .desktop entries via gtk-launch
+
+docs: document default hotkey and Accessibility setup
+
+chore(deps): pin vite to patched 6.4.3
+```
+
+## Releases
+
+Version bumps and git tags follow `.cursor/rules/versioning.mdc`.
+Release commits use `chore:` (e.g. `chore: bump version to 0.2.0`).
+
+## Do not
+
+- Vague messages: `update`, `fix stuff`, `wip`, `changes`
+- Commit secrets, personal configs, or private URLs
+- Mix unrelated changes in one commit
+- Use `--no-verify` unless the user explicitly asks
+- Amend pushed commits unless the user explicitly asks
+
