@@ -23,8 +23,10 @@ Press a global hotkey, pick a command or app, launch it, and the window hides ag
 ## Requirements
 
 - Node.js 20+
-- Rust stable
+- Rust stable via [rustup](https://rustup.rs) (`cargo` and `rustc` must be on your `PATH`)
 - Platform webview (WKWebView / WebView2 / WebKitGTK)
+
+If `npm run tauri build` fails with `failed to get cargo metadata`, Rust is missing or not on your `PATH`. Install with rustup, then `source "$HOME/.cargo/env"` (or open a new shell).
 
 ## Quick start
 
@@ -146,11 +148,25 @@ Hotkey tip: `CommandOrControl+Ö` works on layouts that expose `Ö`. Prefer `Com
 ## Platform notes
 
 - **macOS:** Grant Accessibility (and sometimes Input Monitoring) so the global hotkey works. The app uses `ActivationPolicy::Accessory` (no Dock / App Switcher entry).
-- **Windows / Linux:** Window uses `skipTaskbar`. Global shortcuts need a running graphical session (X11; Wayland support depends on the compositor).
+- **Windows:** Window uses `skipTaskbar`. Needs WebView2 (usually present on current Windows).
+- **Linux:** Window uses `skipTaskbar`. Global shortcuts need a running graphical session (X11; Wayland support depends on the compositor). For builds on Debian/Ubuntu/Kali, install the usual Tauri system deps:
+
+```bash
+sudo apt update
+sudo apt install -y \
+  build-essential curl wget file \
+  libwebkit2gtk-4.1-dev \
+  libayatana-appindicator3-dev \
+  librsvg2-dev \
+  patchelf \
+  libssl-dev \
+  libgtk-3-dev
+```
 
 ## Build
 
 ```bash
+npm install
 npm run tauri build
 ```
 
