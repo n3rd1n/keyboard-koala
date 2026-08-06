@@ -8,6 +8,16 @@
         "name": "Open Example",
         "key": "e",
         "url": "https://example.com"
+      },
+      {
+        "name": "JSON Formatter",
+        "key": "j",
+        "url": "https://jsonformatter.org"
+      },
+      {
+        "name": "Regex 101",
+        "key": "r",
+        "url": "https://regex101.com"
       }
     ]
   }

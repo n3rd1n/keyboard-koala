@@ -16,6 +16,12 @@
       "path": "Terminal"
     },
     {
+      "name": "Finder",
+      "key": "f",
+      "category": "System",
+      "path": "Finder"
+    },
+    {
       "name": "Bookmarks",
       "key": "b",
       "category": "Web",
@@ -28,16 +34,62 @@
         {
           "name": "Tauri Docs",
           "url": "https://v2.tauri.app"
+        },
+        {
+          "name": "Rust Book",
+          "url": "https://doc.rust-lang.org/book/"
+        },
+        {
+          "name": "MDN Web Docs",
+          "url": "https://developer.mozilla.org"
         }
       ]
     },
     {
-      "name": "Extras",
-      "key": "x",
-      "category": "System",
+      "name": "Search sites",
+      "key": "s",
+      "category": "Web",
       "group": [
         {
-          "name": "Example Site",
+          "name": "DuckDuckGo",
+          "key": "d",
+          "url": "https://duckduckgo.com"
+        },
+        {
+          "name": "Wikipedia",
+          "key": "w",
+          "url": "https://en.wikipedia.org"
+        },
+        {
+          "name": "More…",
+          "key": "m",
+          "group": [
+            {
+              "name": "GitHub",
+              "key": "g",
+              "url": "https://github.com"
+            },
+            {
+              "name": "Hacker News",
+              "key": "h",
+              "url": "https://news.ycombinator.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dev tools",
+      "key": "d",
+      "category": "Tools",
+      "group": [
+        {
+          "name": "VS Code",
+          "key": "c",
+          "path": "Visual Studio Code"
+        },
+        {
+          "name": "Open example.com",
           "key": "e",
           "url": "https://example.com"
         }

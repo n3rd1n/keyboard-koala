@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Media",
+    "key": "m",
+    "category": "Apps",
+    "group": [
+      {
+        "name": "Music",
+        "key": "m",
+        "path": "Music"
+      },
+      {
+        "name": "Photos",
+        "key": "p",
+        "path": "Photos"
+      },
+      {
+        "name": "YouTube",
+        "key": "y",
+        "url": "https://www.youtube.com"
+      }
+    ]
+  }
+]

@@ -50,6 +50,8 @@ cp -R examples/config/* ~/.config/keyboardkoala/
 
 All `*.json` files under `~/.config/keyboardkoala` (including subfolders) are loaded and merged in lexicographic path order. The first file is the **primary** config (settings + in-app editing). Later files only add commands whose keys are not already taken.
 
+A fuller starter set lives in [`examples/config/`](examples/config/): primary settings, theme overrides, and extra packs under `packs/`.
+
 Object form (primary):
 
 ```json
@@ -58,11 +60,68 @@ Object form (primary):
   "autostart": false,
   "theme": "dark",
   "themeOverrides": {},
-  "commands": []
+  "commands": [
+    {
+      "name": "Installed Apps",
+      "key": "a",
+      "category": "System",
+      "type": "app-launcher"
+    },
+    {
+      "name": "Terminal",
+      "key": "t",
+      "category": "System",
+      "path": "Terminal"
+    },
+    {
+      "name": "Bookmarks",
+      "key": "b",
+      "category": "Web",
+      "type": "text",
+      "group": [
+        { "name": "Example", "url": "https://example.com" },
+        { "name": "Tauri Docs", "url": "https://v2.tauri.app" },
+        { "name": "Rust Book", "url": "https://doc.rust-lang.org/book/" }
+      ]
+    },
+    {
+      "name": "Search sites",
+      "key": "s",
+      "category": "Web",
+      "group": [
+        {
+          "name": "DuckDuckGo",
+          "key": "d",
+          "url": "https://duckduckgo.com"
+        },
+        {
+          "name": "More…",
+          "key": "m",
+          "group": [
+            {
+              "name": "GitHub",
+              "key": "g",
+              "url": "https://github.com"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ```
 
-Array form (extra packs) is also supported: a JSON array of commands.
+What this shows:
+
+| Piece | Role |
+|-------|------|
+| `type: "app-launcher"` | Fuzzy search over installed apps |
+| `path` | Launch an app by name |
+| `type: "text"` + `group` | Fuzzy search over leaves (keys optional) |
+| nested `group` + `key` | Key-tree folders (e.g. `s` → `m` → `g`) |
+| `url` | Open a link |
+
+Array form (extra packs) is also supported — a JSON array of commands, see `examples/config/packs/`.
 
 ## Themes
 
