@@ -26,13 +26,13 @@ Press a global hotkey, pick a command or app, launch it, and the window hides ag
 - Rust stable via [rustup](https://rustup.rs) (`cargo` and `rustc` must be on your `PATH`)
 - Platform webview (WKWebView / WebView2 / WebKitGTK)
 
-If `npm run tauri build` fails with `failed to get cargo metadata`, Rust is missing or not on your `PATH`. Install with rustup, then `source "$HOME/.cargo/env"` (or open a new shell).
+If `npm run tauri:build` fails with `failed to get cargo metadata`, Rust is missing or not on your `PATH`. Install with rustup, then `source "$HOME/.cargo/env"` (or open a new shell).
 
 ## Quick start
 
 ```bash
 npm install
-npm run tauri dev
+npm run tauri:dev
 ```
 
 Default hotkey: `CommandOrControl+Shift+Space`
@@ -226,7 +226,7 @@ sudo apt install -y \
 
 ```bash
 npm install
-npm run tauri build
+npm run tauri:build
 ```
 
 ## License
