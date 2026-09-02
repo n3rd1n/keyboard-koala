@@ -10,6 +10,7 @@ globs:
 - Do not commit secrets, personal paths, private URLs, tokens, or real user configs.
 - User config lives only under `~/.config/keyboardkoala`. Examples stay under `examples/config/`.
 - Keep Tauri capabilities minimal. Scope filesystem access to the config directory.
+- Shell-like actions use `run` as an argv array only (no shell string). Never add `sh -c` helpers.
 - Code and commit messages in English. User-facing UI may be German.
 - Prefer stable dependency versions already pinned in lockfiles over bleeding-edge releases.
 - For commit message format, follow `.cursor/rules/git-commits.mdc`.

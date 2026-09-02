@@ -26,6 +26,11 @@ export async function fireCommand(command: CommandJson): Promise<FireResult> {
     };
   }
 
+  if (command.run && command.run.length > 0) {
+    await invoke("run_command", { argv: command.run });
+    return { kind: "launched" };
+  }
+
   await invoke("launch_target", {
     path: command.path ?? null,
     url: command.url ?? null,

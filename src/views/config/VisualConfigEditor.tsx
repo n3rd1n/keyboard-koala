@@ -73,7 +73,18 @@ function CommandNode({
     if (partial.url === "") {
       delete next.url;
     }
+    if (partial.run !== undefined && partial.run.length === 0) {
+      delete next.run;
+    }
     onChange(path, next);
+  }
+
+  function patchRunText(text: string) {
+    const argv = text
+      .split("\n")
+      .map((line) => line.trimEnd())
+      .filter((line) => line.length > 0);
+    patch({ run: argv, type: argv.length > 0 ? "run" : command.type });
   }
 
   function handleAddChild() {
@@ -144,6 +155,7 @@ function CommandNode({
                 <option value="">key / leaf</option>
                 <option value="text">text</option>
                 <option value="app-launcher">app-launcher</option>
+                <option value="run">run</option>
               </select>
             </label>
             <Field
@@ -158,6 +170,15 @@ function CommandNode({
               placeholder="https://…"
               onChange={(url) => patch({ url })}
             />
+            <label className="visual-field visual-field-wide">
+              <span>Run argv (one entry per line, no shell)</span>
+              <textarea
+                value={(command.run ?? []).join("\n")}
+                placeholder={"git\nstatus"}
+                rows={3}
+                onChange={(event) => patchRunText(event.target.value)}
+              />
+            </label>
           </div>
 
           {childCount > 0 ? (

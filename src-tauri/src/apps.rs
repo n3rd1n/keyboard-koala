@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
-use std::process::Command;
+use std::process::{Command, Stdio};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -306,4 +306,37 @@ pub fn launch_target(
         (None, Some(link)) => launch_url(link),
         (None, None) => Err("path or url required".to_string()),
     }
+}
+
+/// Spawn `argv` without a shell. `argv[0]` is the program; the rest are arguments.
+/// Stdio is discarded; the process is not waited on (fire-and-forget).
+pub fn run_argv(argv: &[String]) -> Result<(), String> {
+    let program = argv
+        .first()
+        .map(|value| value.trim())
+        .filter(|value| !value.is_empty())
+        .ok_or_else(|| "run must be a non-empty argv array".to_string())?;
+
+    if program.contains('\0') || argv.iter().any(|arg| arg.contains('\0')) {
+        return Err("run arguments must not contain NUL".to_string());
+    }
+
+    let mut command = Command::new(program);
+    if argv.len() > 1 {
+        command.args(&argv[1..]);
+    }
+
+    command
+        .stdin(Stdio::null())
+        .stdout(Stdio::null())
+        .stderr(Stdio::null())
+        .spawn()
+        .map_err(|err| format!("failed to spawn `{program}`: {err}"))?;
+
+    Ok(())
+}
+
+#[tauri::command]
+pub fn run_command(argv: Vec<String>) -> Result<(), String> {
+    run_argv(&argv)
 }

@@ -24,6 +24,9 @@ pub struct CommandJson {
     pub path: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub url: Option<String>,
+    /// Argv to spawn without a shell: `["git", "status"]`. First entry is the program.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub run: Option<Vec<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub group: Option<Vec<CommandJson>>,
 }
@@ -128,10 +131,15 @@ fn command_key(command: &CommandJson) -> String {
         return format!("key:{key}");
     }
     format!(
-        "leaf:{}|{}|{}",
+        "leaf:{}|{}|{}|{}",
         command.name,
         command.path.clone().unwrap_or_default(),
-        command.url.clone().unwrap_or_default()
+        command.url.clone().unwrap_or_default(),
+        command
+            .run
+            .as_ref()
+            .map(|argv| argv.join("\u{1f}"))
+            .unwrap_or_default()
     )
 }
 
@@ -311,6 +319,7 @@ fn default_commands() -> Vec<CommandJson> {
             command_type: Some("app-launcher".to_string()),
             path: None,
             url: None,
+            run: None,
             group: None,
         },
         CommandJson {
@@ -320,6 +329,7 @@ fn default_commands() -> Vec<CommandJson> {
             command_type: None,
             path: None,
             url: Some("https://example.com".to_string()),
+            run: None,
             group: None,
         },
         CommandJson {
@@ -329,6 +339,7 @@ fn default_commands() -> Vec<CommandJson> {
             command_type: Some("text".to_string()),
             path: None,
             url: None,
+            run: None,
             group: Some(vec![
                 CommandJson {
                     name: "Example".to_string(),
@@ -337,6 +348,7 @@ fn default_commands() -> Vec<CommandJson> {
                     command_type: None,
                     path: None,
                     url: Some("https://example.com".to_string()),
+                    run: None,
                     group: None,
                 },
                 CommandJson {
@@ -346,6 +358,7 @@ fn default_commands() -> Vec<CommandJson> {
                     command_type: None,
                     path: None,
                     url: Some("https://v2.tauri.app".to_string()),
+                    run: None,
                     group: None,
                 },
             ]),

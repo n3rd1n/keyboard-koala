@@ -120,8 +120,29 @@ What this shows:
 | `type: "text"` + `group` | Fuzzy search over leaves (keys optional) |
 | nested `group` + `key` | Key-tree folders (e.g. `s` → `m` → `g`) |
 | `url` | Open a link |
+| `run` | Spawn an argv array without a shell (see below) |
 
 Array form (extra packs) is also supported — a JSON array of commands, see `examples/config/packs/`.
+
+### Running programs (`run`)
+
+Commands may include a `run` argv array. The first entry is the program; the rest are
+arguments. Nothing is passed through a shell — no pipes, redirects, or `&&`.
+
+```json
+{
+  "name": "Git status",
+  "key": "g",
+  "run": ["git", "status"]
+}
+```
+
+Notes:
+
+- Treat `run` like local code: only use configs you trust
+- Stdio is discarded (fire-and-forget); use this for side effects, not to read output
+- The program must be on your `PATH` (or an absolute path)
+- See `examples/config/packs/run.json`
 
 ## Themes
 
@@ -178,9 +199,10 @@ leaves out — see `examples/config/10-theme.json`.
 | `name` | Label |
 | `key` | Key in key-tree mode (optional for `type: "text"` leaves) |
 | `category` | Column group |
-| `type` | `text` or `app-launcher` |
+| `type` | `text`, `app-launcher`, or `run` |
 | `path` | App name/path to launch |
 | `url` | URL to open |
+| `run` | Argv array spawned without a shell (`["prog", "arg"]`) |
 | `group` | Nested commands |
 
 Hotkey tip: `CommandOrControl+Ö` works on layouts that expose `Ö`. Prefer `CommandOrControl+Shift+Space` for portability.
@@ -202,6 +224,7 @@ Hotkey tip: `CommandOrControl+Ö` works on layouts that expose `Ö`. Prefer `Com
 
 - Do not commit personal configs, secrets, or private URLs
 - Ship only dummy examples under `examples/config/`
+- Treat `run` entries as executable code — never paste untrusted configs
 - Bundle id: `dev.keyboardkoala.app`
 
 ## Platform notes

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Run examples",
+    "key": "r",
+    "category": "System",
+    "group": [
+      {
+        "name": "whoami",
+        "key": "w",
+        "run": ["whoami"]
+      },
+      {
+        "name": "uname",
+        "key": "u",
+        "run": ["uname", "-a"]
+      }
+    ]
+  }
+]

@@ -1,4 +1,4 @@
-export type CommandType = "text" | "app-launcher";
+export type CommandType = "text" | "app-launcher" | "run";
 
 /** Config command. `key` is required for key-tree navigation; optional for text-search leaves. */
 export type CommandJson = {
@@ -8,6 +8,8 @@ export type CommandJson = {
   type?: CommandType | string;
   path?: string;
   url?: string;
+  /** Argv spawned without a shell: `["git", "status"]`. First entry is the program. */
+  run?: string[];
   group?: CommandJson[];
 };
 
@@ -44,5 +46,6 @@ export function commandIdentity(command: CommandJson, index: number): string {
   if (command.key) {
     return `key:${command.key}:${command.name}`;
   }
-  return `row:${index}:${command.name}:${command.path ?? ""}:${command.url ?? ""}`;
+  const run = command.run?.join("\u0001") ?? "";
+  return `row:${index}:${command.name}:${command.path ?? ""}:${command.url ?? ""}:${run}`;
 }

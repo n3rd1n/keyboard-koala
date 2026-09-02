@@ -311,13 +311,24 @@ kbd {
 }
 
 .visual-field input,
-.visual-field select {
+.visual-field select,
+.visual-field textarea {
   border: 1px solid var(--border);
   background: var(--bg-elevated);
   color: var(--text);
   border-radius: 6px;
   padding: 6px 8px;
   font-size: 12px;
+  font-family: var(--mono);
+}
+
+.visual-field textarea {
+  resize: vertical;
+  min-height: 4.5em;
+}
+
+.visual-field-wide {
+  grid-column: 1 / -1;
 }
 
 .command-node {

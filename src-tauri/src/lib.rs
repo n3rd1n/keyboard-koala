@@ -33,6 +33,7 @@ pub fn run() {
             config::save_primary_config,
             apps::get_installed_apps,
             apps::launch_target,
+            apps::run_command,
             window::show_window,
             window::hide_window,
             window::quit_app,
