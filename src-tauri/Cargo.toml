@@ -1,6 +1,6 @@
 [package]
 name = "keyboardkoala"
-version = "0.1.0"
+version = "0.2.0"
 description = "Background keyboard launcher for apps and commands"
 authors = ["KeyboardKoala contributors"]
 edition = "2021"
