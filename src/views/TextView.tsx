@@ -22,8 +22,7 @@ export function TextView({
   focusToken,
 }: Props) {
   const [selected, setSelected] = useState(0);
-  const { query, inputRef, handleChange, absorbActivationKey } =
-    useActivationSafeSearch(focusToken, commands);
+  const { query, inputRef, handleChange } = useActivationSafeSearch(focusToken, commands);
 
   const filtered = useMemo(
     () => filterByFuzzyName(commands, query),
@@ -51,9 +50,6 @@ export function TextView({
   }
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (absorbActivationKey(event)) {
-      return;
-    }
     if (event.key === "Escape") {
       event.preventDefault();
       onEscape();

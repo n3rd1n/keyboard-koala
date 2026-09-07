@@ -23,8 +23,7 @@ export function AppLauncherView({
   const [apps, setApps] = useState<InstalledApp[]>([]);
   const [selected, setSelected] = useState(0);
   const [error, setError] = useState<string | null>(null);
-  const { query, inputRef, handleChange, absorbActivationKey } =
-    useActivationSafeSearch(focusToken);
+  const { query, inputRef, handleChange } = useActivationSafeSearch(focusToken);
 
   useEffect(() => {
     let active = true;
@@ -76,9 +75,6 @@ export function AppLauncherView({
   }
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (absorbActivationKey(event)) {
-      return;
-    }
     if (event.key === "Escape") {
       event.preventDefault();
       onEscape();
