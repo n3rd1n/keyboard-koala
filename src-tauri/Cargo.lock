@@ -1688,7 +1688,7 @@ dependencies = [
 
 [[package]]
 name = "keyboardkoala"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "dirs 6.0.0",
  "serde",
